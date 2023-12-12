@@ -28,13 +28,15 @@ const LeaderboardEntry = (props) => {
       <div className="container mt-4">
         <div className="row">
           <div className="col">
-            <span className="badge bg-primary">
-              Number of Questions: {numQuestions}
+            <span className="badge bg-primary p-2">
+              <strong className="text-white">Number of Questions:</strong>{" "}
+              {numQuestions}
             </span>
           </div>
           <div className="col">
-            <span className="badge bg-success">
-              Answered Questions: {numAnswers}
+            <span className="badge bg-success p-2">
+              <strong className="text-white">Answered Questions:</strong>{" "}
+              {numAnswers}
             </span>
           </div>
         </div>
