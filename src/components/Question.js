@@ -1,4 +1,5 @@
 import { connect } from "react-redux";
+import { Link } from "react-router-dom";
 
 const Question = (props) => {
   const { question } = props;
@@ -7,8 +8,16 @@ const Question = (props) => {
   }
 
   return (
-    <div>
-      <p>Question by {question.author}</p>
+    <div className="question">
+      <Link to={`/question/${question.id}`}>
+        <p>
+          <strong>{question.optionOne.text}</strong>
+        </p>
+        <p>VS</p>
+        <p>
+          <strong>{question.optionTwo.text}</strong>
+        </p>
+      </Link>
     </div>
   );
 };

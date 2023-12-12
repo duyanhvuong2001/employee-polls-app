@@ -1,7 +1,13 @@
-import { useEffect, useState } from "react";
+import { Fragment, useEffect, useState } from "react";
 import { connect } from "react-redux";
 import Dashboard from "./Dashboard";
 import { handleInitialData } from "../actions/shared";
+import { Route, Routes } from "react-router-dom";
+import QuestionPage from "./QuestionPage";
+import Nav from "./Nav";
+import NewQuestion from "./NewQuestion";
+import NotFound from "./NotFound";
+import Leaderboard from "./Leaderboard";
 
 function App(props) {
   const [loading, setLoading] = useState(true);
@@ -15,7 +21,20 @@ function App(props) {
     fetchData();
   });
   return (
-    <div className="App">{loading ? <p>Loading...</p> : <Dashboard />}</div>
+    <>
+      <Nav />
+      {loading ? (
+        <p>Loading...</p>
+      ) : (
+        <Routes>
+          <Route path="/" exact element={<Dashboard />} />
+          <Route path="/question/:id" exact element={<QuestionPage />} />
+          <Route path="/add" exact element={<NewQuestion />} />
+          <Route path="/404" exact element={<NotFound />} />
+          <Route path="/leaderboard" exact element={<Leaderboard />} />
+        </Routes>
+      )}
+    </>
   );
 }
 

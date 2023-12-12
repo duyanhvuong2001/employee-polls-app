@@ -1,16 +1,13 @@
 import { useState } from "react";
 import { connect } from "react-redux";
 import Question from "./Question";
-
+import { userHasAnswered } from "../utils/utils";
+import LogInReminder from "./LogInReminder";
 const Dashboard = (props) => {
   const [showAnswered, setShowAnswered] = useState(false);
   //Check auth status
   if (props.authedUser === null) {
-    return (
-      <div>
-        <span>Please Log In First</span>
-      </div>
-    );
+    return <LogInReminder />;
   }
 
   const handleToggleQuestions = (e) => {
@@ -23,39 +20,49 @@ const Dashboard = (props) => {
 
   const displayingQuestions = showAnswered ? answeredQs : notAnsweredQs;
   return (
-    <div className="dashboard">
-      <h1>Dashboard</h1>
-      <hr />
-      <h2>{!showAnswered && "Not"} Answered</h2>
-      <ul>
-        {displayingQuestions.map((questionId) => (
-          <li key={questionId}>
-            <Question id={questionId} />
-          </li>
-        ))}
-      </ul>
+    <div className="container mt-4">
+      <div className="row">
+        <div className="col">
+          <div className="dashboard">
+            <h1 className="mb-4">Dashboard</h1>
+            <hr />
 
-      <button onClick={handleToggleQuestions}>Toggle</button>
+            <h2 className={`text-${showAnswered ? "success" : "danger"}`}>
+              {!showAnswered && "Not "}Answered
+            </h2>
+
+            <ul className="list-group">
+              {displayingQuestions.map((questionId) => (
+                <li className="list-group-item" key={questionId}>
+                  <Question id={questionId} />
+                </li>
+              ))}
+            </ul>
+
+            <button
+              className="btn btn-primary mt-3"
+              onClick={handleToggleQuestions}
+            >
+              Toggle
+            </button>
+          </div>
+        </div>
+      </div>
     </div>
   );
 };
 
 const mapStateToProps = ({ questions, authedUser }) => {
-  const userHasAnswered = (questionId) => {
-    return (
-      questions[questionId].optionOne.votes.includes(authedUser) ||
-      questions[questionId].optionTwo.votes.includes(authedUser)
-    );
-  };
   return {
+    authedUser,
     notAnsweredQs: Object.keys(questions)
       .filter((question) => {
-        return !userHasAnswered(question);
+        return !userHasAnswered(questions[question], authedUser);
       })
       .sort((a, b) => questions[b].timestamp - questions[a].timestamp),
     answeredQs: Object.keys(questions)
       .filter((question) => {
-        return userHasAnswered(question);
+        return userHasAnswered(questions[question], authedUser);
       })
       .sort((a, b) => questions[b].timestamp - questions[a].timestamp),
   };
