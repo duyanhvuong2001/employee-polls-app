@@ -1,5 +1,4 @@
 import { connect } from "react-redux";
-import { useParams } from "react-router-dom";
 import {} from "react-bootstrap";
 const LeaderboardEntry = (props) => {
   const { user } = props;

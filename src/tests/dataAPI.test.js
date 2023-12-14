@@ -36,4 +36,13 @@ describe("saveQuestionAnswer function", () => {
       })
     ).resolves.toBe(true);
   });
+
+  it("will return an error if incorrect data is passed", async () => {
+    await expect(
+      API.saveQuestionAnswer({
+        qid: "vthrdm985a262al8qx3do",
+        answer: "optionOne",
+      })
+    ).rejects.toEqual("Please provide authedUser, qid, and answer");
+  });
 });

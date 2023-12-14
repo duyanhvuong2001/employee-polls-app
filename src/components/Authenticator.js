@@ -1,5 +1,4 @@
 import { connect } from "react-redux";
-import { useState } from "react";
 import { Dropdown } from "react-bootstrap";
 import { logIn, logOut } from "../actions/authedUser";
 
@@ -19,7 +18,9 @@ const Authenticator = (props) => {
   return (
     <Dropdown>
       <Dropdown.Toggle variant="secondary" id="dropdown-basic">
-        {loggedIn ? `Hi ${authedUser}` : `Log In`}
+        <span data-testid="log-in-dropdown">
+          {loggedIn ? `Hi ${authedUser}` : `Log In`}
+        </span>
       </Dropdown.Toggle>
 
       <Dropdown.Menu>

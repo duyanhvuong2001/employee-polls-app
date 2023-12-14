@@ -6,9 +6,10 @@ const Nav = () => {
     <>
       <nav className="navbar navbar-expand-lg navbar-light bg-light">
         <div className="container">
-          <Link
+          <a
             className="navbar-brand"
-            to="https://github.com/duyanhvuong2001"
+            href="https://github.com/duyanhvuong2001"
+            data-testid="github-link"
           >
             <img
               src="./resources/images/logo.png"
@@ -16,7 +17,7 @@ const Nav = () => {
               className="rounded-circle"
               style={{ width: "40px", height: "40px" }}
             />
-          </Link>
+          </a>
           <button
             className="navbar-toggler"
             type="button"
@@ -30,13 +31,21 @@ const Nav = () => {
           </button>
           <div className="collapse navbar-collapse" id="navbarNavAltMarkup">
             <div className="navbar-nav">
-              <Link className="nav-link" to="/">
+              <Link className="nav-link" to="/" data-testid="home-link">
                 Home
               </Link>
-              <Link className="nav-link" to="/leaderboard">
+              <Link
+                className="nav-link"
+                to="/leaderboard"
+                data-testid="leaderboard-link"
+              >
                 Leaderboard
               </Link>
-              <Link className="nav-link" to="/add">
+              <Link
+                className="nav-link"
+                to="/add"
+                data-testid="add-question-link"
+              >
                 Add Question
               </Link>
               <Authenticator />

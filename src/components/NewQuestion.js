@@ -25,7 +25,8 @@ const NewQuestion = (props) => {
     e.preventDefault();
 
     dispatch(handleAddQuestion(optionOneText, optionTwoText, authedUser));
-
+    setOptionOneText("");
+    setOptionTwoText("");
     //Redirect to root when done
     navigate("/");
   };
@@ -42,6 +43,7 @@ const NewQuestion = (props) => {
           <div className="col-auto">
             <input
               type="text"
+              data-testid="optionOne"
               id="optionOne"
               className="form-control"
               value={optionOneText}
@@ -59,6 +61,7 @@ const NewQuestion = (props) => {
           <div className="col-auto">
             <input
               type="text"
+              data-testid="optionTwo"
               id="optionTwo"
               value={optionTwoText}
               onChange={handleOptionTwoTextChange}
