@@ -1,4 +1,4 @@
-import * as API from "../utils/api";
+import * as API from "../utils/_DATA";
 
 describe("saveQuestion function", () => {
   it("will return the saved question if the correctly formatted data is passed", async () => {
@@ -8,7 +8,7 @@ describe("saveQuestion function", () => {
       author: "jeff",
     };
 
-    const savedQuestion = await API.saveQuestion(question);
+    const savedQuestion = await API._saveQuestion(question);
     expect(question.optionOneText).toEqual(savedQuestion.optionOne.text);
     expect(question.optionTwoText).toEqual(savedQuestion.optionTwo.text);
     expect(question.author).toEqual(savedQuestion.author);
@@ -20,7 +20,7 @@ describe("saveQuestion function", () => {
       optionTwoText: "bar",
     };
 
-    await expect(API.saveQuestion(question)).rejects.toEqual(
+    await expect(API._saveQuestion(question)).rejects.toEqual(
       "Please provide optionOneText, optionTwoText, and author"
     );
   });
@@ -29,7 +29,7 @@ describe("saveQuestion function", () => {
 describe("saveQuestionAnswer function", () => {
   it("will resolve true if a correctly formatted data is passed", async () => {
     await expect(
-      API.saveQuestionAnswer({
+      API._saveQuestionAnswer({
         authedUser: "tylermcginnis",
         qid: "vthrdm985a262al8qx3do",
         answer: "optionOne",
@@ -39,7 +39,7 @@ describe("saveQuestionAnswer function", () => {
 
   it("will return an error if incorrect data is passed", async () => {
     await expect(
-      API.saveQuestionAnswer({
+      API._saveQuestionAnswer({
         qid: "vthrdm985a262al8qx3do",
         answer: "optionOne",
       })
