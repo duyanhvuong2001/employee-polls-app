@@ -2,11 +2,17 @@
 
 This React/Redux project aims to provide employees within an organization an interface to express their opinions about certain problems. They can ask others to vote on their created polls as well as contribute their opinions to others.
 
+## HOW TO DEPLOY THIS PROJECT?
+IMPORTANT: Make sure you have Node installed in your machine
+1. Clone the repository to your local machine (using GitHub Desktop,...)
+2. Open terminal, CD to the project directory/folder
+3. Run npm i to install all dependencies
+
 ## Available Scripts
 
 In the project directory, you can run:
 
-### `npm start`
+### `npm run start`
 
 Runs the app in the development mode.\
 Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
@@ -14,7 +20,7 @@ Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
 The page will reload when you make changes.\
 You may also see any lint errors in the console.
 
-### `npm test`
+### `npm run test`
 
 Launches the test runner in the interactive watch mode.\
 See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
